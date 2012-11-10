@@ -1,9 +1,11 @@
 <script>
     Math._rs = function() {
-        return (this.random()*2-1)+(this.random()*2-1)+(this.random()*2-1);
+        return (this.random() * 2 - 1)
+            + (this.random() * 2 - 1)
+            + (this.random() * 2 - 1);
     };
     Math.gRandom = function(mean, stdev) {
-        return Math.round(this._rs()*stdev+mean);
+        return Math.floor(this._rs() * stdev + mean);
     };
 
     function createCanvas() {
