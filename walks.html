@@ -1,0 +1,51 @@
+<script>
+    (function(){
+        function createCanvas() {
+            var canvas = document.createElement('canvas');
+            canvas.width = 640;
+            canvas.height = 480;
+            canvas.style.border = '1px solid';
+            document.body.appendChild(canvas);
+            return canvas;
+        }
+
+        function Walker(c, x, y) {
+            this.c = c;
+            this.x = x;
+            this.y = y;
+
+            return this;
+        }
+
+        Walker.prototype = {
+            display: function() {
+                var ctx = this.c.getContext('2d');
+                ctx.fillStyle = '#000';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 1, 0, Math.PI*2, true);
+                ctx.closePath();
+                ctx.fill();
+            },
+
+            step: function() {
+                var stepx = Math.floor((Math.random() * 3) - 1),
+                    stepy = Math.floor((Math.random() * 3) - 1);
+
+                this.x += stepx;
+                this.y += stepy;
+            }
+        };
+
+        function init() {
+            var canvas = createCanvas();
+            var w = new Walker(canvas, canvas.width / 2, canvas.height / 2);
+
+            window.setInterval(function(){
+                w.step();
+                w.display();
+            }, 1000/60);
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    })();
+</script>
