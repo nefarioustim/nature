@@ -1,0 +1,36 @@
+<script>
+    Math._rs = function() {
+        return (this.random()*2-1)+(this.random()*2-1)+(this.random()*2-1);
+    };
+    Math.gRandom = function(mean, stdev) {
+        return Math.round(this._rs()*stdev+mean);
+    };
+
+    function createCanvas() {
+        var canvas = document.createElement('canvas');
+        canvas.width = 640;
+        canvas.height = 480;
+        canvas.style.border = '1px solid';
+        document.body.appendChild(canvas);
+        return canvas;
+    }
+
+    function init() {
+        var canvas = createCanvas();
+
+        window.setInterval(function(){
+            var ctx = canvas.getContext('2d');
+                ctx.fillStyle = 'rgba(0,0,0,0.1)';
+                ctx.beginPath();
+                ctx.arc(
+                    Math.gRandom(canvas.width / 2, canvas.width / 6),
+                    canvas.height/2,
+                    5, 0, Math.PI*2, true
+                );
+                ctx.closePath();
+                ctx.fill();
+        }, 1000/60);
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+</script>
