@@ -1,0 +1,22 @@
+<script>
+    (function(){
+        function createCanvas() {
+            var canvas = document.createElement('canvas');
+            canvas.width = 640;
+            canvas.height = 480;
+            canvas.style.border = '1px solid';
+            document.body.appendChild(canvas);
+            return canvas;
+        }
+
+        function init() {
+            var canvas = createCanvas();
+
+            window.setInterval(function(){
+
+            }, 1000/60);
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    })();
+</script>
